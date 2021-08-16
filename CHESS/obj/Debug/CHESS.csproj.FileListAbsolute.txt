@@ -1,0 +1,15 @@
+C:\Users\USER\source\repos\CHESS\CHESS\obj\Debug\CHESS.csprojAssemblyReference.cache
+C:\Users\USER\source\repos\CHESS\CHESS\obj\Debug\MainWindow.g.cs
+C:\Users\USER\source\repos\CHESS\CHESS\obj\Debug\App.g.cs
+C:\Users\USER\source\repos\CHESS\CHESS\obj\Debug\CHESS_MarkupCompile.cache
+C:\Users\USER\source\repos\CHESS\CHESS\obj\Debug\CHESS_MarkupCompile.lref
+C:\Users\USER\source\repos\CHESS\CHESS\bin\Debug\CHESS.exe.config
+C:\Users\USER\source\repos\CHESS\CHESS\bin\Debug\CHESS.exe
+C:\Users\USER\source\repos\CHESS\CHESS\bin\Debug\CHESS.pdb
+C:\Users\USER\source\repos\CHESS\CHESS\obj\Debug\MainWindow.baml
+C:\Users\USER\source\repos\CHESS\CHESS\obj\Debug\CHESS.g.resources
+C:\Users\USER\source\repos\CHESS\CHESS\obj\Debug\CHESS.Properties.Resources.resources
+C:\Users\USER\source\repos\CHESS\CHESS\obj\Debug\CHESS.csproj.GenerateResource.cache
+C:\Users\USER\source\repos\CHESS\CHESS\obj\Debug\CHESS.csproj.CoreCompileInputs.cache
+C:\Users\USER\source\repos\CHESS\CHESS\obj\Debug\CHESS.exe
+C:\Users\USER\source\repos\CHESS\CHESS\obj\Debug\CHESS.pdb
