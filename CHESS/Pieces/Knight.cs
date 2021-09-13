@@ -24,19 +24,5 @@ namespace CHESS
             int y = Math.Abs(start.getY() - end.getY());
             return x * y == 2;
         }
-
-
-
-        public override void print()
-        {
-            if (this.isWhite())
-            {
-                Console.Write(" KNIGHT ");
-            }
-            else
-            {
-                Console.Write(" knight ");
-            }
-        }
     }
 }

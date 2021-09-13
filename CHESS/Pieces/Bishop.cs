@@ -24,17 +24,5 @@ namespace CHESS
             return Math.Abs(end.getX() - start.getX()) == Math.Abs(end.getY() - start.getY()) && board.cleared(start.getX(), start.getY(), end.getX(), end.getY());
         }
 
-
-        public override void print()
-        {
-            if (this.isWhite())
-            {
-                Console.Write(" BISHOP ");
-            }
-            else
-            {
-                Console.Write(" bishop ");
-            }
-        }
     }
 }

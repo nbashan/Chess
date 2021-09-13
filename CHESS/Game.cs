@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace CHESS
 {
+    //BEST GAME EVER
     public enum GameStatus
     {
         ACTIVE,
@@ -15,17 +16,28 @@ namespace CHESS
         STALEMATE,
         RESIGNATION
     }
+    public struct killed
+    {
+        public Piece piece;
+        public bool white;
+    }
 
     public class Game
     {
-        private Player[] players;
-        public Board board;
-        private Player currentTurn;
+        public Player[] players;
         private GameStatus status;
-        private List<Move> movesPlayed;
+        private List<Move> movesPlayed ;
+        public List<killed> whiteKilledPieces;
+        public List<killed> blackKilledPieces;
+        public Board board;
+        public Player currentTurn;
 
         public void initialize(Player p1, Player p2)
         {
+           
+            movesPlayed = new List<Move>();
+            whiteKilledPieces = new List<killed>();
+            blackKilledPieces = new List<killed>();
             players = new Player[2];
             players[0] = p1;
             players[1] = p2;
@@ -33,14 +45,7 @@ namespace CHESS
             board = new Board();
             board.resetBoard();
 
-            if (p1.isWhiteSide())
-            {
-                this.currentTurn = p1;
-            }
-            else
-            {
-                this.currentTurn = p2;
-            }
+            this.currentTurn = p1;
 
             //movesPlayed.Clear();
         }
@@ -67,18 +72,6 @@ namespace CHESS
             Spot endBox = board.getBox(endY, endX);
             Move move = new Move(currentTurn, startBox, endBox);
             return makeMove(move, currentTurn);
-        }
-        public void printGrid()
-        {
-            Piece piece;
-            for (int i = 0; i < 8; i++)
-            {
-                for (int j = 0; j < 8; j++)
-                {
-                    
-
-                }
-            }
         }
 
         private bool makeMove(Move move, Player player)
@@ -114,6 +107,17 @@ namespace CHESS
             {
                 destPiece.setKilled(true);
                 move.setPieceKilled(destPiece);
+                killed kPiece;
+                kPiece.piece = move.getEnd().getPiece();
+                kPiece.white = move.getEnd().getPiece().isWhite();
+                if (kPiece.white)
+                {
+                    whiteKilledPieces.Add(kPiece);
+                }
+                else
+                {
+                    blackKilledPieces.Add(kPiece);
+                }
             }
 
             Spot rookmove;
@@ -165,8 +169,78 @@ namespace CHESS
                 currentTurn = players[0];
             }
 
+            movesPlayed.Add(move);
+
+
+
+            if(currentTurn is ComputerPlayer)
+            {
+                ai();
+                if (currentTurn == players[0])
+                {
+                    currentTurn = players[1];
+                }
+                else
+                {
+                    currentTurn = players[0];
+                }
+            }
+
+
             return true;
         }
+
+
+        public void ai()
+        {
+            //return abmax(gm, DEPTH, game.LOSS - 1, game.VICTORY + 1)[1];
+        }
+
+
+
+
+        /*
+                VICTORY = 10 ** 20  # The value of a winning board (for max)
+                LOSS = -VICTORY  # The value of a losing board (for min)
+
+                struct helper{
+                    public int value;
+                    public Board board;
+                }
+
+
+                public List<Board> getNext(Board board);
+
+                public helper abmin(depth,a,b);
+
+                public value()
+
+
+
+
+
+
+                public helper abmax(depth,a,b){
+
+                    if d == 0 or game.isFinished(gm):
+                        return [game.value(gm), 0]
+    
+                    double v = double.PositiveInfinity;
+
+                    ns = game.getNext(gm)
+                    bestMove = 0
+                    for st in ns:
+                        tmp = abmax(st, d - 1, a, b)
+                        if tmp[0] < v:
+                            v = tmp[0]
+                            bestMove = st
+                        if v <= a:
+                            return [v, st]
+                    return [v, bestMove]
+
+
+
+        */
 
 
     }

@@ -19,6 +19,24 @@ namespace CHESS
 
             if (start.getPiece().isWhite())
             {
+                if ((start.getY() == 6 && (distY == -1 || distY == -2)) && distX == 0 && end.getPiece() == null)
+                {
+                    return true;
+                }
+                else if ((start.getY() <= 6 && distY == -1) && distX == 0 && end.getPiece() == null)
+                {
+                    return true;
+                }
+                else if (distY == -1 && Math.Abs(distX) == 1 && end.getPiece() != null && end.getPiece().isWhite() != this.isWhite())
+                {
+                    return true;
+                }
+
+            }
+
+            else 
+            {
+
                 if ((start.getY() == 1 && (distY == 1 || distY == 2)) && distX == 0 && end.getPiece() == null)
                 {
                     return true;
@@ -32,37 +50,8 @@ namespace CHESS
                     return true;
                 }
             }
-
-            else if (!start.getPiece().isWhite())
-            {
-
-                if ((start.getY() == 6 && distY == -1 || distY == -2) && distX == 0 && end.getPiece() == null)
-                {
-                    return true;
-                }
-                else if ((start.getY() <= 6 && distY == -1) && distX == 0 && end.getPiece() == null)
-                {
-                    return true;
-                }
-                else if (distY == -1 && Math.Abs(distX) == 1 && end.getPiece()!=null && end.getPiece().isWhite() != this.isWhite())
-                {
-                    return true;
-                }
-            }
             return false;
         }
 
-
-        public override void print()
-        {
-            if (this.isWhite())
-            {
-                Console.Write("  PAWN  ");
-            }
-            else
-            {
-                Console.Write("  pawn  ");
-            }
-        }
     }
 }

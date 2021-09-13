@@ -6,9 +6,19 @@
         xmlns:local="clr-namespace:CHESS"
         mc:Ignorable="d"
         Title="chess" Height="600" Width="600"
-                WindowStartupLocation="CenterScreen">
+                WindowStartupLocation="CenterScreen"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}">
     <Grid x:Name="chess_game" >
+
         <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
@@ -19,6 +29,8 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
@@ -272,8 +284,114 @@
             <Button x:Name="x7y7" Width="40" Height="40" Click="x7y7_Click" Background="#708090"/>
         </Grid>
 
+        <Button Grid.Row="8" Grid.Column="3" Grid.ColumnSpan="2" Click="Button_Click">
+            RESET
+        </Button>
+
+        <Grid x:Name="garbage_can" Grid.Row="0" Grid.RowSpan="2" Grid.Column="8" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Button Grid.Column="0" Grid.Row ="3" Background="Transparent" Margin="2,1.667,2.667,2.333" Height="Auto" BorderThickness="0"/>
+            <Button Grid.Column="1" Grid.Row ="3" Background="Transparent" Margin="2,1.667,2.667,2.333" Height="Auto" BorderThickness="0"/>
+            <Button Grid.Column="2" Grid.Row ="3" Background="Transparent" Margin="2,1.667,2.667,2.333" Height="Auto" BorderThickness="0"/>
+            <Button Grid.Column="3" Grid.Row ="3" Background="Transparent" Margin="2,1.667,2.667,2.333" Height="Auto" BorderThickness="0"/>
+
+            <Button Grid.Column="0" Grid.Row ="2" Background="Transparent" Margin="2,1.667,2.667,2.333" Height="Auto" BorderThickness="0"/>
+            <Button Grid.Column="1" Grid.Row ="2" Background="Transparent" Margin="2,1.667,2.667,2.333" Height="Auto" BorderThickness="0"/>
+            <Button Grid.Column="2" Grid.Row ="2" Background="Transparent" Margin="2,1.667,2.667,2.333" Height="Auto" BorderThickness="0"/>
+            <Button Grid.Column="3" Grid.Row ="2" Background="Transparent" Margin="2,1.667,2.667,2.333" Height="Auto" BorderThickness="0"/>
+
+            <Button Grid.Column="0" Grid.Row ="1" Background="Transparent" Margin="2,1.667,2.667,2.333" Height="Auto" BorderThickness="0"/>
+            <Button Grid.Column="1" Grid.Row ="1" Background="Transparent" Margin="2,1.667,2.667,2.333" Height="Auto" BorderThickness="0"/>
+            <Button Grid.Column="2" Grid.Row ="1" Background="Transparent" Margin="2,1.667,2.667,2.333" Height="Auto" BorderThickness="0"/>
+            <Button Grid.Column="3" Grid.Row ="1" Background="Transparent" Margin="2,1.667,2.667,2.333" Height="Auto" BorderThickness="0"/>
+
+            <Button Grid.Column="0" Grid.Row ="0" Background="Transparent" Margin="2,1.667,2.667,2.333" Height="Auto" BorderThickness="0"/>
+            <Button Grid.Column="1" Grid.Row ="0" Background="Transparent" Margin="2,1.667,2.667,2.333" Height="Auto" BorderThickness="0"/>
+            <Button Grid.Column="2" Grid.Row ="0" Background="Transparent" Margin="2,1.667,2.667,2.333" Height="Auto" BorderThickness="0"/>
+            <Button Grid.Column="3" Grid.Row ="0" Background="Transparent" Margin="2,1.667,2.667,2.333" Height="Auto" BorderThickness="0"/>
+
+
+
+            <Grid.Background>
+                <ImageBrush ImageSource="images/dead.png" Opacity="0.3"/>
+            </Grid.Background>
+
+
+
+        </Grid>
+
+
+        <Grid x:Name="garbage_can2" Grid.Row="6" Grid.RowSpan="2" Grid.Column="8" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Button Grid.Column="0" Grid.Row ="3" Background="Transparent" Margin="2,1.667,2.667,2.333" Height="Auto" BorderThickness="0"/>
+            <Button Grid.Column="1" Grid.Row ="3" Background="Transparent" Margin="2,1.667,2.667,2.333" Height="Auto" BorderThickness="0"/>
+            <Button Grid.Column="2" Grid.Row ="3" Background="Transparent" Margin="2,1.667,2.667,2.333" Height="Auto" BorderThickness="0"/>
+            <Button Grid.Column="3" Grid.Row ="3" Background="Transparent" Margin="2,1.667,2.667,2.333" Height="Auto" BorderThickness="0"/>
+
+            <Button Grid.Column="0" Grid.Row ="2" Background="Transparent" Margin="2,1.667,2.667,2.333" Height="Auto" BorderThickness="0"/>
+            <Button Grid.Column="1" Grid.Row ="2" Background="Transparent" Margin="2,1.667,2.667,2.333" Height="Auto" BorderThickness="0"/>
+            <Button Grid.Column="2" Grid.Row ="2" Background="Transparent" Margin="2,1.667,2.667,2.333" Height="Auto" BorderThickness="0"/>
+            <Button Grid.Column="3" Grid.Row ="2" Background="Transparent" Margin="2,1.667,2.667,2.333" Height="Auto" BorderThickness="0"/>
+
+            <Button Grid.Column="0" Grid.Row ="1" Background="Transparent" Margin="2,1.667,2.667,2.333" Height="Auto" BorderThickness="0"/>
+            <Button Grid.Column="1" Grid.Row ="1" Background="Transparent" Margin="2,1.667,2.667,2.333" Height="Auto" BorderThickness="0"/>
+            <Button Grid.Column="2" Grid.Row ="1" Background="Transparent" Margin="2,1.667,2.667,2.333" Height="Auto" BorderThickness="0"/>
+            <Button Grid.Column="3" Grid.Row ="1" Background="Transparent" Margin="2,1.667,2.667,2.333" Height="Auto" BorderThickness="0"/>
+
+            <Button Grid.Column="0" Grid.Row ="0" Background="Transparent" Margin="2,1.667,2.667,2.333" Height="Auto" BorderThickness="0"/>
+            <Button Grid.Column="1" Grid.Row ="0" Background="Transparent" Margin="2,1.667,2.667,2.333" Height="Auto" BorderThickness="0"/>
+            <Button Grid.Column="2" Grid.Row ="0" Background="Transparent" Margin="2,1.667,2.667,2.333" Height="Auto" BorderThickness="0"/>
+            <Button Grid.Column="3" Grid.Row ="0" Background="Transparent" Margin="2,1.667,2.667,2.333" Height="Auto" BorderThickness="0"/>
+
+
+
+            <Grid.Background>
+                <ImageBrush ImageSource="images/dead.png" Opacity="0.3"/>
+            </Grid.Background>
+
+
+
+        </Grid>
+
+
+
+
+
+
+
         <Grid.Background>
             <ImageBrush ImageSource="images/wood.png" Opacity="0.7"/>
         </Grid.Background>
+
+
+
     </Grid>
 </Window>

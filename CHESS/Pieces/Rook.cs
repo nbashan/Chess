@@ -27,18 +27,5 @@ namespace CHESS
             }
             return false;
         }
-
-
-        public override void print()
-        {
-            if (this.isWhite())
-            {
-                Console.Write("  ROOK  ");
-            }
-            else
-            {
-                Console.Write("  rook  ");
-            }
-        }
     }
 }

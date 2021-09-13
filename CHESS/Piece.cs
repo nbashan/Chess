@@ -41,6 +41,5 @@ namespace CHESS
         public abstract bool canMove(Board board,
                                     Spot start, Spot end);
 
-        public abstract void print();
     }
 }

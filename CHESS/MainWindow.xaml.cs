@@ -21,9 +21,12 @@ namespace CHESS
     /// </summary>
     public partial class MainWindow : Window
     {
-        Player p1 = new HumanPlayer(true);
-        Player p2 = new HumanPlayer(false);
+        Player p1;
+        Player p2;
         Game game = new Game();
+
+        bool white = true;
+        bool human = true;
 
 
         Uri white_bishop = new Uri("images/white_bishop.png", UriKind.Relative);
@@ -53,19 +56,104 @@ namespace CHESS
 
 
 
-        public MainWindow()
+        public MainWindow(bool white, bool human)
         {
+            this.white = white;
+            this.human = human;
+            reset(white, human);
+        }
+
+        public void reset(bool white, bool human)
+        {
+
+            //game.initialize(p1, p2);
+            //if (!human)
+            //{
+            //    game.ai();
+            //    if (game.currentTurn == game.players[0])
+            //    {
+            //        game.currentTurn = game.players[1];
+            //    }
+            //    else
+            //    {
+            //        game.currentTurn = game.players[0];
+            //    }
+            //}
+
+
+
+            if (human)
+            {
+                p1 = new HumanPlayer(true);
+                p2 = new HumanPlayer(false);
+                if (white)
+                {
+                   
+                    game.initialize(p1, p2);
+                }
+                else
+                {
+                    game.initialize(p2, p1);
+                }
+            }
+            else
+            {
+                if (white)
+                {
+                    p1 = new ComputerPlayer(true);
+                    p2 = new HumanPlayer(false);
+                    game.initialize(p1, p2);
+                    game.ai();
+                    if (game.currentTurn == game.players[0])
+                    {
+                        game.currentTurn = game.players[1];
+                    }
+                    else
+                    {
+                        game.currentTurn = game.players[0];
+                    }
+                }
+                else
+                {
+                    p1 = new HumanPlayer(true);
+                    p2 = new ComputerPlayer(false);
+                }
+            }
+            if (game.blackKilledPieces != null)
+            {
+                int index2 = 0;
+                foreach (var item in game.blackKilledPieces)
+                {
+
+                    var a1 = (Button)garbage_can.Children[index2];
+                    a1.Background = Brushes.Transparent;
+                    index2++;
+                }
+            }
+            if (game.whiteKilledPieces != null)
+            {
+                int index2 = 0;
+                foreach (var item in game.whiteKilledPieces)
+                {
+
+                    var a1 = (Button)garbage_can2.Children[index2];
+                    a1.Background = Brushes.Transparent;
+                    index2++;
+                }
+            }
             game.setStatus(GameStatus.ACTIVE);
-            game.initialize(p1, p2);
-            int turn = 1;
+
+
+
+           
             InitializeComponent();
             printGrid(null);
-            
         }
 
         public void printGrid(Spot spot)
         {
             Uri image = white_pawn;
+            //print grid
             for (int j = 0; j < 8; j++)
             {
                 for (int i = 0; i < 8; i++)
@@ -110,13 +198,13 @@ namespace CHESS
                                 image = black_knight;
                         }
 
-                        StreamResourceInfo streamInfo = Application.GetResourceStream(image);
+                        StreamResourceInfo streamInfo= Application.GetResourceStream(image);
 
-                        BitmapFrame temp1 = BitmapFrame.Create(streamInfo.Stream);
-                        var brush = new ImageBrush();
-                        brush.ImageSource = temp1;
+                        BitmapFrame temp2 = BitmapFrame.Create(streamInfo.Stream);
+                        var brush1 = new ImageBrush();
+                        brush1.ImageSource = temp2;
 
-                        b.Background = brush;
+                        b.Background = brush1;
 
                     }
                     else
@@ -127,15 +215,83 @@ namespace CHESS
                             b.Background = new SolidColorBrush(Color.FromRgb(220, 220, 220));
                     }
 
+                   
 
-
-                    if (spot != null && spot.getPiece() != null && spot.getPiece().canMove(game.board, spot, game.board.getBox(i, j))) 
+                    if (spot != null && spot.getPiece() != null && spot.getPiece().canMove(game.board, spot, game.board.getBox(i, j)) && game.currentTurn.isWhiteSide() == spot.getPiece().isWhite()) 
                     {
                         a.Background = new SolidColorBrush(Color.FromRgb(255,0,0));
                     }
                 }
             }
+
             
+            int index = 0;
+            foreach(var item in game.whiteKilledPieces)
+            {
+                if (item.piece is Pawn)
+                    image = white_pawn;
+                else if (item.piece is King)
+                    image = white_king;
+                else if (item.piece is Queen)
+                    image = white_queen;
+                else if (item.piece is Rook)
+                    image = white_rook;
+                else if (item.piece is Bishop)
+                    image = white_bishop;
+                else if (item.piece is Knight)
+                    image = white_knight;
+                var a1 = (Button)garbage_can2.Children[index];
+                StreamResourceInfo streamInfo1 = Application.GetResourceStream(image);
+
+                BitmapFrame temp1 = BitmapFrame.Create(streamInfo1.Stream);
+                var brush = new ImageBrush();
+                brush.ImageSource = temp1;
+
+                a1.Background = brush;
+                index++;
+            }
+
+
+            int index2 = 0;
+            foreach (var item in game.blackKilledPieces)
+            {
+                if (item.piece is Pawn)
+                    image = black_pawn;
+                else if (item.piece is King)
+                    image = black_king;
+                else if (item.piece is Queen)
+                    image = black_queen;
+                else if (item.piece is Rook)
+                    image = black_rook;
+                else if (item.piece is Bishop)
+                    image = black_bishop;
+                else if (item.piece is Knight)
+                    image = black_knight;
+                var a1 = (Button)garbage_can.Children[index2];
+                StreamResourceInfo streamInfo1 = Application.GetResourceStream(image);
+
+                BitmapFrame temp1 = BitmapFrame.Create(streamInfo1.Stream);
+                var brush = new ImageBrush();
+                brush.ImageSource = temp1;
+
+                a1.Background = brush;
+                index2++;
+            }
+
+
+
+
+
+            //{
+            //    y = 0;
+            //    for (int i = 0; i < 4; i++)
+            //    {
+            //        x = 23 + 8 * i + j;
+            //    }
+            //    y++;
+
+            //}
+
         }
 
         private void click(int y, int x)
@@ -492,6 +648,11 @@ namespace CHESS
         private void x7y7_Click(object sender, RoutedEventArgs e)
         {
             click(7,7);
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        { 
+            reset(white,human);
         }
     }
 }

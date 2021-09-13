@@ -89,16 +89,6 @@ namespace CHESS
         }
 
 
-        public override void print()
-        {
-            if (this.isWhite())
-            {
-                Console.Write("  KING ");
-            }
-            else
-            {
-                Console.Write("  king  ");
-            }
-        }
+
     }
 }

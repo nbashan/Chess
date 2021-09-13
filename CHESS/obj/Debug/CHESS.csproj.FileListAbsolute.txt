@@ -13,3 +13,12 @@ C:\Users\USER\source\repos\CHESS\CHESS\obj\Debug\CHESS.csproj.GenerateResource.c
 C:\Users\USER\source\repos\CHESS\CHESS\obj\Debug\CHESS.csproj.CoreCompileInputs.cache
 C:\Users\USER\source\repos\CHESS\CHESS\obj\Debug\CHESS.exe
 C:\Users\USER\source\repos\CHESS\CHESS\obj\Debug\CHESS.pdb
+C:\Users\USER\source\repos\CHESS\CHESS\bin\Debug\MaterialDesignColors.dll
+C:\Users\USER\source\repos\CHESS\CHESS\bin\Debug\MaterialDesignThemes.Wpf.dll
+C:\Users\USER\source\repos\CHESS\CHESS\bin\Debug\MaterialDesignColors.pdb
+C:\Users\USER\source\repos\CHESS\CHESS\bin\Debug\MaterialDesignThemes.Wpf.pdb
+C:\Users\USER\source\repos\CHESS\CHESS\bin\Debug\MaterialDesignThemes.Wpf.xml
+C:\Users\USER\source\repos\CHESS\CHESS\obj\Debug\CHESS.csproj.CopyComplete
+C:\Users\USER\source\repos\CHESS\CHESS\obj\Debug\App.baml
+C:\Users\USER\source\repos\CHESS\CHESS\obj\Debug\Start.g.cs
+C:\Users\USER\source\repos\CHESS\CHESS\obj\Debug\Start.baml
