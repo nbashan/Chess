@@ -10,6 +10,21 @@ namespace CHESS
     {
         private bool castlingDone = false;
 
+        public static double[,] factor = new double[,]
+      {
+            { -3.0, -4.0, -4.0, -5.0, -5.0, -4.0, -4.0, -3.0 },
+            { -3.0, -4.0, -4.0, -5.0, -5.0, -4.0, -4.0, -3.0 },
+            { -3.0, -4.0, -4.0, -5.0, -5.0, -4.0, -4.0, -3.0 },
+            { -3.0, -4.0, -4.0, -5.0, -5.0, -4.0, -4.0, -3.0 },
+            { -2.0, -3.0, -3.0, -4.0, -4.0, -3.0, -3.0, -2.0 },
+            { -1.0, -2.0, -2.0, -2.0, -2.0, -2.0, -2.0, -1.0 },
+            {  2.0,  2.0,  0.0,  0.0,  0.0,  0.0,  2.0,  2.0 },
+            {  2.0,  3.0,  1.0,  0.0,  0.0,  1.0,  3.0,  2.0 },
+       };
+
+
+
+
         public King(bool white) : base(white)
         {
         }
@@ -35,7 +50,7 @@ namespace CHESS
 
             int x = Math.Abs(start.getX() - end.getX());
             int y = Math.Abs(start.getY() - end.getY());
-            if (x + y == 1)
+            if (x + y == 1 || (x==1 && y==1))
             {
                 // check if this move will not result in the king
                 // being attacked if so return true
@@ -88,7 +103,10 @@ namespace CHESS
             return true;
         }
 
-
+        public override int value()
+        {
+            return 10000;
+        }
 
     }
 }

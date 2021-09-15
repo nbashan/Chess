@@ -25,7 +25,7 @@ namespace CHESS
         Player p2;
         Game game = new Game();
 
-        bool white = true;
+        bool startB = true;
         bool human = true;
 
 
@@ -56,97 +56,57 @@ namespace CHESS
 
 
 
-        public MainWindow(bool white, bool human)
+        public MainWindow(bool startB, bool human)
         {
-            this.white = white;
+            this.startB = startB;
             this.human = human;
-            reset(white, human);
+            reset(startB, human);
         }
 
-        public void reset(bool white, bool human)
+        public void reset(bool startB, bool human)
         {
-
-            //game.initialize(p1, p2);
-            //if (!human)
-            //{
-            //    game.ai();
-            //    if (game.currentTurn == game.players[0])
-            //    {
-            //        game.currentTurn = game.players[1];
-            //    }
-            //    else
-            //    {
-            //        game.currentTurn = game.players[0];
-            //    }
-            //}
-
-
-
+            InitializeComponent();
             if (human)
             {
                 p1 = new HumanPlayer(true);
-                p2 = new HumanPlayer(false);
-                if (white)
-                {
-                   
-                    game.initialize(p1, p2);
-                }
-                else
-                {
-                    game.initialize(p2, p1);
-                }
+                p2 = new HumanPlayer(false);               
+                game.initialize(p1, p2);
             }
             else
             {
-                if (white)
+                if (!startB)
                 {
                     p1 = new ComputerPlayer(true);
                     p2 = new HumanPlayer(false);
                     game.initialize(p1, p2);
                     game.ai();
-                    if (game.currentTurn == game.players[0])
-                    {
-                        game.currentTurn = game.players[1];
-                    }
-                    else
-                    {
-                        game.currentTurn = game.players[0];
-                    }
                 }
                 else
                 {
                     p1 = new HumanPlayer(true);
                     p2 = new ComputerPlayer(false);
+                    game.initialize(p1, p2);
                 }
             }
-            if (game.blackKilledPieces != null)
+            if (game.blackKilledPieces.Count == 0)
             {
-                int index2 = 0;
-                foreach (var item in game.blackKilledPieces)
+                for (int i = 0; i < 16; i++)
                 {
 
-                    var a1 = (Button)garbage_can.Children[index2];
+                    var a1 = (Button)garbage_can.Children[i];
                     a1.Background = Brushes.Transparent;
-                    index2++;
                 }
             }
-            if (game.whiteKilledPieces != null)
+            if (game.whiteKilledPieces.Count == 0)
             {
-                int index2 = 0;
-                foreach (var item in game.whiteKilledPieces)
+                for (int i = 0; i < 16; i++)
                 {
-
-                    var a1 = (Button)garbage_can2.Children[index2];
+                    var a1 = (Button)garbage_can2.Children[i];
                     a1.Background = Brushes.Transparent;
-                    index2++;
                 }
             }
             game.setStatus(GameStatus.ACTIVE);
 
-
-
-           
-            InitializeComponent();
             printGrid(null);
         }
 
@@ -228,17 +188,17 @@ namespace CHESS
             int index = 0;
             foreach(var item in game.whiteKilledPieces)
             {
-                if (item.piece is Pawn)
+                if (item is Pawn)
                     image = white_pawn;
-                else if (item.piece is King)
+                else if (item is King)
                     image = white_king;
-                else if (item.piece is Queen)
+                else if (item is Queen)
                     image = white_queen;
-                else if (item.piece is Rook)
+                else if (item is Rook)
                     image = white_rook;
-                else if (item.piece is Bishop)
+                else if (item is Bishop)
                     image = white_bishop;
-                else if (item.piece is Knight)
+                else if (item is Knight)
                     image = white_knight;
                 var a1 = (Button)garbage_can2.Children[index];
                 StreamResourceInfo streamInfo1 = Application.GetResourceStream(image);
@@ -255,17 +215,17 @@ namespace CHESS
             int index2 = 0;
             foreach (var item in game.blackKilledPieces)
             {
-                if (item.piece is Pawn)
+                if (item is Pawn)
                     image = black_pawn;
-                else if (item.piece is King)
+                else if (item is King)
                     image = black_king;
-                else if (item.piece is Queen)
+                else if (item is Queen)
                     image = black_queen;
-                else if (item.piece is Rook)
+                else if (item is Rook)
                     image = black_rook;
-                else if (item.piece is Bishop)
+                else if (item is Bishop)
                     image = black_bishop;
-                else if (item.piece is Knight)
+                else if (item is Knight)
                     image = black_knight;
                 var a1 = (Button)garbage_can.Children[index2];
                 StreamResourceInfo streamInfo1 = Application.GetResourceStream(image);
@@ -294,11 +254,20 @@ namespace CHESS
 
         }
 
+
+
+
+
+
+
+
+
         private void click(int y, int x)
         {
             if (start == null)
             {
                 start = game.board.getBox(y, x);
+                List<Board> board = game.board.getNext(game.currentTurn.isWhiteSide());
                 printGrid(start);
             }
             else
@@ -306,8 +275,12 @@ namespace CHESS
                 end = game.board.getBox(y, x);
                 if (game.playerMove(start.getY(), start.getX(), end.getY(), end.getX()))
                 {
-                    printGrid(null);
                     start = null;
+                    if (game.currentTurn is ComputerPlayer)
+                    {
+                        game.ai();
+                    }
+                    printGrid(null);
                 }
                 else
                 {
@@ -316,7 +289,6 @@ namespace CHESS
                 }
             }
         }
-
 
         private void x0y0_Click(object sender, RoutedEventArgs e)
         {
@@ -358,13 +330,6 @@ namespace CHESS
             click(0, 7);
         }
 
-
-
-
-
-
-
-
         private void x0y1_Click(object sender, RoutedEventArgs e)
         {
             click(1, 0);
@@ -404,11 +369,6 @@ namespace CHESS
         {
             click(1, 7);
         }
-
-
-
-
-
 
         private void x0y2_Click(object sender, RoutedEventArgs e)
         {
@@ -652,7 +612,7 @@ namespace CHESS
 
         private void Button_Click(object sender, RoutedEventArgs e)
         { 
-            reset(white,human);
+            reset(startB, human);
         }
     }
 }

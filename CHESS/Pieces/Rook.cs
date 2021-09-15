@@ -10,6 +10,18 @@ namespace CHESS
     {
         public Rook(bool white) : base(white) { }
 
+        public static double[,] factor = new double[,]
+{
+            {  0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,  0.0 },
+            {  0.5, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0,  0.5 },
+            { -0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.5 },
+            { -0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.5 },
+            { -0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.5 },
+            { -0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.5 },
+            { -0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.5 },
+            {  0.0, 0.0, 0.0, 0.5, 0.5, 0.0, 0.0,  0.0 },
+ };
+
         public override bool canMove(Board board, Spot start,
                                           Spot end)
         {
@@ -26,6 +38,11 @@ namespace CHESS
                 return true;
             }
             return false;
+        }
+
+        public override int value()
+        {
+            return 50;
         }
     }
 }

@@ -10,6 +10,19 @@ namespace CHESS
     {
         public Pawn(bool white) : base(white) { }
 
+
+        public static double[,] factor = new double[,]
+       {
+            { 0.0,  0.0,  0.0,  0.0,  0.0,  0.0,  0.0, 0.0 },
+            { 5.0,  5.0,  5.0,  5.0,  5.0,  5.0,  5.0, 5.0 },
+            { 1.0,  1.0,  1.0,  3.0,  3.0,  2.0,  1.0, 1.0 },
+            { 0.5,  0.5,  0.5,  2.5,  2.5,  1.0,  0.5, 0.5 },
+            { 0.0,  0.0,  0.0,  2.0,  2.0,  0.0,  0.0, 0.0 },
+            { 0.5, -0.5, -0.5,  0.0,  0.0, -1.0, -5.0, 0.5 },
+            { 0.5,  1.0,  1.0, -2.0, -2.0,  1.0,  1.0, 0.5 },
+            { 0.0,  0.0,  0.0,  0.0,  0.0,  0.0,  0.0, 0.0 },
+        };
+
         public override bool canMove(Board board, Spot start,
                                            Spot end)
         {
@@ -51,6 +64,12 @@ namespace CHESS
                 }
             }
             return false;
+        }
+
+
+        public override int value()
+        {
+            return 10;
         }
 
     }

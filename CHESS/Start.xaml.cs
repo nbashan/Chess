@@ -19,29 +19,32 @@ namespace CHESS
     /// </summary>
     public partial class Start : Window
     {
-        public bool white = true;
+        public bool start = true;
         public bool human = true;
         public Start()
         {
             InitializeComponent();
         }
 
-        private void White_Click(object sender, RoutedEventArgs e)
+        private void Computer_Start_Click(object sender, RoutedEventArgs e)
         {
-            whiteBG.Background = new SolidColorBrush(Color.FromRgb(0,255, 0));
-            blackBG.Background = new SolidColorBrush(Color.FromRgb(112, 128, 144));
-            white = true;
+            ComputerStart.Background = new SolidColorBrush(Color.FromRgb(0,255, 0));
+            HumanStart.Background = new SolidColorBrush(Color.FromRgb(112, 128, 144));
+            start = false;
         }
 
-        private void Black_Click(object sender, RoutedEventArgs e)
+        private void Human_Start_Click(object sender, RoutedEventArgs e)
         {
-            blackBG.Background = new SolidColorBrush(Color.FromRgb(0,255, 0));
-            whiteBG.Background = new SolidColorBrush(Color.FromRgb(112, 128, 144));
-            white = false;
+            HumanStart.Background = new SolidColorBrush(Color.FromRgb(0,255, 0));
+            ComputerStart.Background = new SolidColorBrush(Color.FromRgb(112, 128, 144));
+            start = true;
         }
 
         private void Computer_Click(object sender, RoutedEventArgs e)
         {
+            HumanStart.Visibility = Visibility.Visible;
+            ComputerStart.Visibility = Visibility.Visible;
+            startBG.Visibility = Visibility.Visible;
             computerBG.Background = new SolidColorBrush(Color.FromRgb(0,255, 0));
             humanBG.Background = new SolidColorBrush(Color.FromRgb(112, 128, 144));
             human = false;
@@ -49,6 +52,9 @@ namespace CHESS
 
         private void Human_Click(object sender, RoutedEventArgs e)
         {
+            HumanStart.Visibility = Visibility.Hidden;
+            ComputerStart.Visibility = Visibility.Hidden;
+            startBG.Visibility = Visibility.Hidden;
             humanBG.Background = new SolidColorBrush(Color.FromRgb(0,255, 0));
             computerBG.Background = new SolidColorBrush(Color.FromRgb(112, 128, 144));
             human = true;
@@ -56,7 +62,7 @@ namespace CHESS
 
         private void Next_Click(object sender, RoutedEventArgs e)
         {
-            new MainWindow(white,human).Show();
+            new MainWindow(start,human).Show();
             this.Close();
         }
     }

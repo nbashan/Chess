@@ -11,6 +11,18 @@ namespace CHESS
         public Bishop(bool white) : base(white) { }
 
 
+        public static double[,] factor = new double[,]
+        {
+            { -2.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -2.0 },
+            { -1.0,  0.0,  0.0,  0.0,  0.0,  0.0,  0.0, -1.0 },
+            { -1.0,  0.0,  0.5,  1.0,  1.0,  0.5,  0.0, -1.0 },
+            { -1.0,  0.5,  0.5,  1.0,  1.0,  0.5,  0.5, -1.0 },
+            { -1.0,  0.0,  1.0,  1.0,  1.0,  0.0,  0.0, -1.0 },
+            { -1.0,  1.0,  1.0,  1.0,  1.0,  1.0,  1.0, -1.0 },
+            { -1.0,  0.5,  0.0,  0.0,  0.0,  0.5,  0.5, -1.0 },
+            { -2.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -2.0 },
+         };
+
 
         public override bool canMove(Board board, Spot start,
                                            Spot end)
@@ -22,6 +34,11 @@ namespace CHESS
                 return false;
             }
             return Math.Abs(end.getX() - start.getX()) == Math.Abs(end.getY() - start.getY()) && board.cleared(start.getX(), start.getY(), end.getX(), end.getY());
+        }
+
+        public override int value()
+        {
+            return 30;
         }
 
     }
