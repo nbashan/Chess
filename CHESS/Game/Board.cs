@@ -8,26 +8,60 @@ namespace CHESS
 {
     public class Board
     {
-        public Spot[,] boxes;
-        public bool finished = false;
-        public Move move;
+        #region attributes
+        private Spot[,] boxes;
+        private bool finished = false;
+        private Move move;
+        private bool kingThreatned = false;
+        #endregion
 
+        #region getters & setters
+        public bool getFinished()
+        {
+            return this.finished;
+        }
+        public void setFinished(bool finished)
+        {
+            this.finished = finished;
+        }
 
+        public bool getKingThreatned()
+        {
+            return this.kingThreatned;
+        }
+        public void setKingThreatned(bool kingThreatned)
+        {
+            this.kingThreatned = kingThreatned;
+        }
+
+        public Move getMove()
+        {
+            return this.move;
+        }
+        public void setMove(Move move)
+        {
+            this.move = move;
+        }
+        #endregion
+
+        #region ctor
         public Board()
         {
             resetBoard();
-           
         }
         public Board(Board newBoard)
         {
             boxes = newBoard.deepCopy();
             move = null;
         }
-        public Board(Board newBoard,Move newMove)
+        public Board(Board newBoard, Move newMove)
         {
             boxes = newBoard.deepCopy();
             move = newMove;
         }
+        #endregion
+
+        #region functions
         public Spot[,] deepCopy()
         {
             Spot[,] boxes = new Spot[8, 8];
@@ -190,36 +224,8 @@ namespace CHESS
                 Piece piece = item.getPiece();
                 if (piece != null)
                 {
-                    if (piece.isWhite())
-                    {
-                        if (piece is Pawn)
-                            factor = Pawn.factor[item.getY(), item.getX()];
-                        else if (piece is King)
-                            factor = King.factor[item.getY(), item.getX()];
-                        else if (piece is Queen)
-                            factor = Queen.factor[item.getY(), item.getX()];
-                        else if (piece is Rook)
-                            factor = Rook.factor[item.getY(), item.getX()];
-                        else if (piece is Bishop)
-                            factor = Bishop.factor[item.getY(), item.getX()];
-                        else if (piece is Knight)
-                            factor = Knight.factor[item.getY(), item.getX()];
-                    }
-                    else
-                    {
-                        if (piece is Pawn)
-                            factor = Pawn.factor[7 - item.getY(), item.getX()];
-                        else if (piece is King)
-                            factor = King.factor[7 - item.getY(), item.getX()];
-                        else if (piece is Queen)
-                            factor = Queen.factor[7 - item.getY(), item.getX()];
-                        else if (piece is Rook)
-                            factor = Rook.factor[7 - item.getY(), item.getX()];
-                        else if (piece is Bishop)
-                            factor = Bishop.factor[7 - item.getY(), item.getX()];
-                        else if (piece is Knight)
-                            factor = Knight.factor[7 - item.getY(), item.getX()];
-                    }
+
+                    factor = piece.getFactor()[item.getY(), item.getX()];
                     if (piece.isWhite() == white)
                     {
                         retValue += piece.value();
@@ -250,5 +256,18 @@ namespace CHESS
             }
             return retList;
         }
+        public Spot getKingSpot(bool white)
+        {
+            Spot ret = null;
+            foreach (var item in boxes)
+            {
+                if (item.getPiece() is King && item.getPiece().isWhite() == white)
+                {
+                    ret = item;
+                }
+            }
+            return ret;
+        }
+        #endregion
     }
 }

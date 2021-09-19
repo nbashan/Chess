@@ -284,13 +284,13 @@
             <Button x:Name="x7y7" Width="40" Height="40" Click="x7y7_Click" Background="#708090"/>
         </Grid>
 
-        <Button Grid.Row="8" Grid.Column="8" Grid.ColumnSpan="2" Click="Button_Click">
+        <Button Grid.Row="8" Grid.Column="8" Grid.ColumnSpan="2" Click="Reset_Click">
             RESET
         </Button>
 
 
 
-        <Button Grid.Row="8" Grid.Column="1" Click="Button_Click_1" >
+        <Button Grid.Row="8" Grid.Column="1" Click="Back_Click" >
             <Button.Background>
                 <ImageBrush ImageSource="images/back.png" Opacity="0.7"/>
             </Button.Background>
@@ -335,7 +335,7 @@
 
 
             <Grid.Background>
-                <ImageBrush ImageSource="images/dead.png" Opacity="0.3"/>
+                <ImageBrush ImageSource="images/dead.png" Opacity="0.1"/>
             </Grid.Background>
 
 
@@ -382,14 +382,19 @@
 
 
             <Grid.Background>
-                <ImageBrush ImageSource="images/dead.png" Opacity="0.3"/>
+                <ImageBrush ImageSource="images/dead.png" Opacity="0.1"/>
             </Grid.Background>
 
 
 
         </Grid>
         <Label Name="thinking" Content="THINKING..." Grid.Column="8" Grid.ColumnSpan="2"  Grid.Row="4" HorizontalAlignment="Center" FontSize="16" Foreground="#FF1A2C77" FontFamily="Arial Black" Visibility="Hidden"/>
+      
+        
+        <Label Name="whiteScoring" Grid.ColumnSpan="2" Grid.Column="8" HorizontalAlignment="Center"  Grid.Row="5"  VerticalAlignment="Center"/>
 
+        <Label Name="blackScoring" Grid.ColumnSpan="2" Grid.Column="8" HorizontalAlignment="Center"  Grid.Row="2"  VerticalAlignment="Center"/>
+        <Label Name="finish" Grid.Column="2" Grid.ColumnSpan="6" VerticalAlignment="Center" FontSize="50" Foreground="OrangeRed" HorizontalAlignment="Center" Grid.Row="8"/>
 
 
 

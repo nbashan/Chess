@@ -8,10 +8,13 @@ namespace CHESS
 {
 	abstract public class Player
 	{
-		public bool whiteSide;
-		public bool humanPlayer;
+        #region attributes
+        private bool whiteSide;
+		private bool humanPlayer;
+        #endregion
 
-		public bool isWhiteSide()
+        #region getters & setters
+        public bool isWhiteSide()
 		{
 			return this.whiteSide;
 		}
@@ -19,23 +22,36 @@ namespace CHESS
 		{
 			return this.humanPlayer;
 		}
-	}
-	class HumanPlayer : Player
-	{
 
-		public HumanPlayer(bool whiteSide)
-		{
+		public void setWhiteSide(bool whiteSide)
+        {
 			this.whiteSide = whiteSide;
-			this.humanPlayer = true;
-		}
-	}
-	class ComputerPlayer : Player
-	{
+        }
 
-		public ComputerPlayer(bool whiteSide)
+		public void setHumanPlayer(bool humanPlayer)
+        {
+			this.humanPlayer = humanPlayer;
+        }
+        #endregion
+    }
+    class HumanPlayer : Player
+	{
+        #region ctor
+        public HumanPlayer(bool whiteSide)
 		{
-			this.whiteSide = whiteSide;
-			this.humanPlayer = false;
+			this.setWhiteSide(whiteSide);
+			this.setHumanPlayer(true);
 		}
-	}
+        #endregion
+    }
+    class ComputerPlayer : Player
+	{
+        #region ctor
+        public ComputerPlayer(bool whiteSide)
+		{
+			this.setWhiteSide(whiteSide);
+			this.setHumanPlayer(false);
+		}
+        #endregion
+    }
 }

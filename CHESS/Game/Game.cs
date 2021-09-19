@@ -7,8 +7,6 @@ using System.Threading.Tasks;
 namespace CHESS
 {
     public enum GameStatus
-
-
     {
         ACTIVE,
         BLACK_WIN,
@@ -19,8 +17,9 @@ namespace CHESS
     }
     public class Game
     {
-        int VICTORY = 2147483647;
-        int LOSS = -2147483648;
+        #region attributes
+        private int VICTORY = 2147483647;
+        private int LOSS = -2147483648;
         private GameStatus status;
         public List<Move> movesPlayed ;
         public Board board;
@@ -28,7 +27,20 @@ namespace CHESS
         public Player currentTurn;
         public List<Piece> whiteKilledPieces;
         public List<Piece> blackKilledPieces;
+        #endregion
 
+        #region getters & setters
+        public GameStatus getStatus()
+        {
+            return status;
+        }
+        public void setStatus(GameStatus status)
+        {
+            this.status = status;
+        }
+        #endregion
+
+        #region functions
         public void initialize(Player p1, Player p2)
         {
 
@@ -48,14 +60,6 @@ namespace CHESS
         public bool isEnd()
         {
             return getStatus() != GameStatus.ACTIVE;
-        }
-        public GameStatus getStatus()
-        {
-            return status;
-        }
-        public void setStatus(GameStatus status)
-        {
-            this.status = status;
         }
         public bool playerMove(int startY,
                                     int startX, int endY, int endX)
@@ -110,7 +114,7 @@ namespace CHESS
             Spot rookmove;
             // castling
             if (sourcePiece != null && sourcePiece is King
-            && !move.isCastlingMove())
+            && !move.getCastlingMove())
             {
                 move.setCastlingMove(true);
                 if (move.getStart().getX() > move.getEnd().getX())
@@ -126,7 +130,6 @@ namespace CHESS
                     rookmove.setPiece(null);
                 }
             }
-
             // store the move
             //movesPlayed.Add(move);
                
@@ -148,7 +151,22 @@ namespace CHESS
                 }
             }
 
+            if (board.getKingSpot(!currentTurn.isWhiteSide()) != null && end.getPiece().canMove(board, end, board.getKingSpot(!currentTurn.isWhiteSide())))
+            {
+                board.setKingThreatned(true);
+            }
+            else
+            {
+                board.setKingThreatned(false);
+            }
+
+
             // set the current turn to the other player
+            switchTurn();
+            return true;
+        }
+        public void switchTurn()
+        {
             if (currentTurn == players[0])
             {
                 currentTurn = players[1];
@@ -157,19 +175,14 @@ namespace CHESS
             {
                 currentTurn = players[0];
             }
-
-
-
-            return true;
         }
-        
-        
+        #endregion
+
+        #region AI MIN MAX
         public void ai()
         {
-            makeMove(abmax(new Board(board), 3, LOSS, VICTORY).board.move, currentTurn);
+            makeMove(abmax(new Board(board), 3, LOSS, VICTORY).board.getMove(), currentTurn);
         }
-
-
         private struct helper
         {
             public double value;
@@ -183,7 +196,7 @@ namespace CHESS
         }
         private helper abmax(Board board, int depth, int a, int b)
         {
-            if (depth == 0 || board.finished)
+            if (depth == 0 || board.getFinished())
                 return new helper(board.value(currentTurn.isWhiteSide()), board);
 
 
@@ -207,7 +220,7 @@ namespace CHESS
         }
         private helper abmin(Board board, int depth, int a, int b)
         {
-            if (depth == 0 || board.finished)
+            if (depth == 0 || board.getFinished())
                 return new helper(board.value(currentTurn.isWhiteSide()), board);
 
 
@@ -229,5 +242,6 @@ namespace CHESS
             }
             return new helper(v, bestMove.board);
         }
+        #endregion
     }
 }

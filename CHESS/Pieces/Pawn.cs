@@ -8,9 +8,11 @@ namespace CHESS
 {
     public class Pawn : Piece
     {
+        #region ctor
         public Pawn(bool white) : base(white) { }
+        #endregion
 
-
+        #region factor
         public static double[,] factor = new double[,]
        {
             { 0.0,  0.0,  0.0,  0.0,  0.0,  0.0,  0.0, 0.0 },
@@ -22,7 +24,9 @@ namespace CHESS
             { 0.5,  1.0,  1.0, -2.0, -2.0,  1.0,  1.0, 0.5 },
             { 0.0,  0.0,  0.0,  0.0,  0.0,  0.0,  0.0, 0.0 },
         };
+        #endregion
 
+        #region overrided functions
         public override bool canMove(Board board, Spot start,
                                            Spot end)
         {
@@ -58,7 +62,7 @@ namespace CHESS
                 {
                     return true;
                 }
-                else if (Math.Abs(distY) == 1 && Math.Abs(distX) == 1 && end.getPiece() != null && end.getPiece().isWhite() != this.isWhite())
+                else if (distY == 1 && Math.Abs(distX) == 1 && end.getPiece() != null && end.getPiece().isWhite() != this.isWhite())
                 {
                     return true;
                 }
@@ -71,6 +75,20 @@ namespace CHESS
         {
             return 10;
         }
+
+        public override Uri getImage()
+        {
+            if (isWhite())
+                return new Uri("images/white_pawn.png", UriKind.Relative);
+            else
+                return new Uri("images/black_pawn.png", UriKind.Relative);
+        }
+
+        public override double[,] getFactor()
+        {
+            return factor;
+        }
+        #endregion
 
     }
 }

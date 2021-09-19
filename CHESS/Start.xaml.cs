@@ -19,8 +19,8 @@ namespace CHESS
     /// </summary>
     public partial class Start : Window
     {
-        public bool start = true;
-        public bool human = true;
+        private bool start = true;
+        private bool human = true;
         public Start()
         {
             InitializeComponent();

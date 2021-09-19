@@ -8,9 +8,11 @@ namespace CHESS
 {
     public class Knight : Piece
     {
+        #region ctor
         public Knight(bool white) : base(white) { }
+        #endregion
 
-
+        #region factor
         public static double[,] factor = new double[,]
        {
             { -5.0, -4.0, -3.0, -3.0, -3.0, -3.0, -4.0, -5.0 },
@@ -22,7 +24,9 @@ namespace CHESS
             { -4.0, -2.0,  0.0,  0.5,  0.5,  0.0, -2.0, -4.0 },
             { -5.0, -4.0, -3.0, -3.0, -3.0, -3.0, -4.0, -5.0 },
         };
+        #endregion
 
+        #region overrided functions
         public override bool canMove(Board board, Spot start,
                                             Spot end)
         {
@@ -42,5 +46,19 @@ namespace CHESS
         {
             return 30;
         }
+
+        public override Uri getImage()
+        {
+            if (isWhite())
+                return new Uri("images/white_knight.png", UriKind.Relative);
+            else
+                return new Uri("images/black_knight.png", UriKind.Relative);
+        }
+
+        public override double[,] getFactor()
+        {
+            return factor;
+        }
+        #endregion
     }
 }

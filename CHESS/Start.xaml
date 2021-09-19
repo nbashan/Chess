@@ -76,7 +76,6 @@
             NEXT
         </Button>
 
-
         <Grid.Background>
             <ImageBrush ImageSource="images/wood.png" Opacity="0.3"/>
         </Grid.Background>

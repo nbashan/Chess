@@ -8,8 +8,11 @@ namespace CHESS
 {
     public class King : Piece
     {
+        #region attributes
         private bool castlingDone = false;
+        #endregion
 
+        #region factor
         public static double[,] factor = new double[,]
       {
             { -3.0, -4.0, -4.0, -5.0, -5.0, -4.0, -4.0, -3.0 },
@@ -21,14 +24,15 @@ namespace CHESS
             {  2.0,  2.0,  0.0,  0.0,  0.0,  0.0,  2.0,  2.0 },
             {  2.0,  3.0,  1.0,  0.0,  0.0,  1.0,  3.0,  2.0 },
        };
+        #endregion
 
-
-
-
+        #region ctor
         public King(bool white) : base(white)
         {
         }
+        #endregion
 
+        #region getters & setters
         public bool isCastlingDone()
         {
             return this.castlingDone;
@@ -38,7 +42,9 @@ namespace CHESS
         {
             this.castlingDone = castlingDone;
         }
+        #endregion
 
+        #region overrided functions
         public override bool canMove(Board board, Spot start, Spot end)
         {
             // we can't move the piece to a Spot that
@@ -50,6 +56,10 @@ namespace CHESS
 
             int x = Math.Abs(start.getX() - end.getX());
             int y = Math.Abs(start.getY() - end.getY());
+            if(x > 2)
+            {
+                return false;
+            }
             if (x + y == 1 || (x==1 && y==1))
             {
                 // check if this move will not result in the king
@@ -60,6 +70,13 @@ namespace CHESS
             return this.isValidCastling(board, start, end);
         }
 
+        public override int value()
+        {
+            return 10000;
+        }
+        #endregion
+
+        #region functions
         private bool isValidCastling(Board board,
                                         Spot start, Spot end)
         {
@@ -86,7 +103,7 @@ namespace CHESS
             return true;
         }
 
-        public bool isCastlingMove(Spot start, Spot end)
+        private bool isCastlingMove(Spot start, Spot end)
         {
             if (this.isCastlingDone())
             {
@@ -103,10 +120,18 @@ namespace CHESS
             return true;
         }
 
-        public override int value()
+        public override Uri getImage()
         {
-            return 10000;
+            if (isWhite())
+                return new Uri("images/white_king.png", UriKind.Relative);
+            else
+                return new Uri("images/black_king.png", UriKind.Relative);
         }
 
+        public override double[,] getFactor()
+        {
+            return factor;
+        }
+        #endregion
     }
 }

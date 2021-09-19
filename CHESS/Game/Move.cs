@@ -8,19 +8,26 @@ namespace CHESS
 {
     public class Move
     {
+        #region attributes
         private Spot start;
         private Spot end;
         private bool castlingMove = false;
+        #endregion
 
+        #region ctor
         public Move(Spot start, Spot end)
         {
             this.start = start;
             this.end = end;
         }
-        public bool isCastlingMove()
+        #endregion
+
+        #region getters & setters
+        public bool getCastlingMove()
         {
             return this.castlingMove;
         }
+
         public void setCastlingMove(bool castlingMove)
         {
             this.castlingMove = castlingMove;
@@ -37,5 +44,6 @@ namespace CHESS
         {
             return end;
         }
+        #endregion
     }
 }
