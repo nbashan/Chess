@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 namespace CHESS
 {
     public enum GameStatus
+
+
     {
         ACTIVE,
         BLACK_WIN,
@@ -20,7 +22,7 @@ namespace CHESS
         int VICTORY = 2147483647;
         int LOSS = -2147483648;
         private GameStatus status;
-        private List<Move> movesPlayed ;
+        public List<Move> movesPlayed ;
         public Board board;
         public Player[] players;
         public Player currentTurn;
@@ -103,6 +105,7 @@ namespace CHESS
                     blackKilledPieces.Add(kPiece);
                 }
             }
+            movesPlayed.Add(new Move(new Spot(move.getStart().getY(), move.getStart().getX(),move.getStart().getPiece()), new Spot(move.getEnd().getY(), move.getEnd().getX(), move.getEnd().getPiece())));
 
             Spot rookmove;
             // castling
@@ -155,7 +158,6 @@ namespace CHESS
                 currentTurn = players[0];
             }
 
-            movesPlayed.Add(move);
 
 
             return true;

@@ -157,8 +157,9 @@ namespace CHESS
                             else if (piece is Knight)
                                 image = black_knight;
                         }
+                        
 
-                        StreamResourceInfo streamInfo= Application.GetResourceStream(image);
+                        StreamResourceInfo streamInfo = Application.GetResourceStream(image);
 
                         BitmapFrame temp2 = BitmapFrame.Create(streamInfo.Stream);
                         var brush1 = new ImageBrush();
@@ -181,6 +182,15 @@ namespace CHESS
                     {
                         a.Background = new SolidColorBrush(Color.FromRgb(255,0,0));
                     }
+
+                    Move aa;
+                    if (game.movesPlayed.Count != 0)
+                    {
+                        aa = game.movesPlayed.Last();
+                        a = (Grid)chess_game.Children[aa.getEnd().getY() + aa.getEnd().getX() * 8];
+                        a.Background = new SolidColorBrush(Color.FromRgb(255, 210, 50));
+                    }
+
                 }
             }
 
@@ -237,21 +247,6 @@ namespace CHESS
                 a1.Background = brush;
                 index2++;
             }
-
-
-
-
-
-            //{
-            //    y = 0;
-            //    for (int i = 0; i < 4; i++)
-            //    {
-            //        x = 23 + 8 * i + j;
-            //    }
-            //    y++;
-
-            //}
-
         }
 
 
@@ -280,6 +275,7 @@ namespace CHESS
                     {
                         game.ai();
                     }
+                    //thinking.Visibility = Visibility.Hidden;
                     printGrid(null);
                 }
                 else
@@ -507,7 +503,7 @@ namespace CHESS
 
         private void x3y5_Click(object sender, RoutedEventArgs e)
         {
-            click(5, 4);
+            click(5, 3);
         }
 
         private void x4y5_Click(object sender, RoutedEventArgs e)
@@ -613,6 +609,29 @@ namespace CHESS
         private void Button_Click(object sender, RoutedEventArgs e)
         { 
             reset(startB, human);
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            if (game.movesPlayed.Count != 0)
+            {
+                Move move = game.movesPlayed.Last();
+                game.movesPlayed.RemoveAt(game.movesPlayed.Count() - 1);
+                Spot start = game.board.getBox(move.getStart().getY(), move.getStart().getX());
+                Spot end = game.board.getBox(move.getEnd().getY(), move.getEnd().getX());
+                start.setPiece(move.getStart().getPiece());
+                end.setPiece(move.getEnd().getPiece());
+
+                if (game.currentTurn == game.players[0])
+                {
+                    game.currentTurn = game.players[1];
+                }
+                else
+                {
+                    game.currentTurn = game.players[0];
+                }
+                printGrid(null);
+            }
         }
     }
 }

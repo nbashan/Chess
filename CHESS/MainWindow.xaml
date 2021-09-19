@@ -284,8 +284,16 @@
             <Button x:Name="x7y7" Width="40" Height="40" Click="x7y7_Click" Background="#708090"/>
         </Grid>
 
-        <Button Grid.Row="8" Grid.Column="3" Grid.ColumnSpan="2" Click="Button_Click">
+        <Button Grid.Row="8" Grid.Column="8" Grid.ColumnSpan="2" Click="Button_Click">
             RESET
+        </Button>
+
+
+
+        <Button Grid.Row="8" Grid.Column="1" Click="Button_Click_1" >
+            <Button.Background>
+                <ImageBrush ImageSource="images/back.png" Opacity="0.7"/>
+            </Button.Background>
         </Button>
 
         <Grid x:Name="garbage_can" Grid.Row="0" Grid.RowSpan="2" Grid.Column="8" Grid.ColumnSpan="2">
@@ -380,6 +388,7 @@
 
 
         </Grid>
+        <Label Name="thinking" Content="THINKING..." Grid.Column="8" Grid.ColumnSpan="2"  Grid.Row="4" HorizontalAlignment="Center" FontSize="16" Foreground="#FF1A2C77" FontFamily="Arial Black" Visibility="Hidden"/>
 
 
 
