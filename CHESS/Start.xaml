@@ -14,7 +14,8 @@
         TextOptions.TextFormattingMode="Ideal"
         TextOptions.TextRenderingMode="Auto"
         Background="{DynamicResource MaterialDesignPaper}"
-        FontFamily="{DynamicResource MaterialDesignFont}">
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        WindowStyle="ToolWindow">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -34,7 +35,7 @@
         <Label Content="CHESS: " HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.ColumnSpan="4"  FontSize="60" Foreground="#FF1A2C77" FontFamily="Arial Black"/>
 
 
-        <TextBlock x:Name="startBG" Text="START?" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="50" Foreground="#FF1A27" FontFamily="Arial Black" Visibility="Hidden"/>
+        <TextBlock x:Name="startBG" Text="START?" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="50" Foreground="#FF1A2277" FontFamily="Arial Black" Visibility="Hidden"/>
 
         <TextBlock Text="VS?" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="50" Foreground="#FF1A2277" FontFamily="Arial Black"/>
 

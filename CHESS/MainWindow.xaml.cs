@@ -47,7 +47,7 @@ namespace CHESS
         }
         #endregion
 
-
+        #region functions
         private void printGrid(Spot spot)
         {
             for (int j = 0; j < 8; j++)
@@ -103,8 +103,8 @@ namespace CHESS
             }
 
 
-            updateTrash(game.whiteKilledPieces, whiteScoring,garbage_can);
-            updateTrash(game.blackKilledPieces, blackScoring,garbage_can2);
+            updateTrash(game.whiteKilledPieces, whiteScoring,garbage_can2);
+            updateTrash(game.blackKilledPieces, blackScoring,garbage_can);
 
             if (game.board.getKingThreatned())
             {
@@ -153,8 +153,6 @@ namespace CHESS
                 button.Background = Brushes.Transparent;
             }
         }
-
-      
         private void updateTrash(List<Piece> pieces, Label scoring,Grid garbage)
         {
             int index = 0;
@@ -198,8 +196,6 @@ namespace CHESS
                 finish.Content = "STALEMATE";
             }
         }
-
-
         private void Reset_Click(object sender, RoutedEventArgs e)
         { 
             reset(startB, human);
@@ -277,7 +273,7 @@ namespace CHESS
                 }
             }
         }
-
+        #endregion
 
         #region board buttons
         private void x0y0_Click(object sender, RoutedEventArgs e)
