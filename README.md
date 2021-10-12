@@ -1,1 +1,3 @@
 # Chess
+
+![preview](preview.gif)
