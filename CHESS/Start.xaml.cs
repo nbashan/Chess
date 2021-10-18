@@ -20,49 +20,53 @@ namespace CHESS
     public partial class Start : Window
     {
         private bool start = true;
-        private bool human = true;
         public Start()
         {
             InitializeComponent();
         }
 
-        private void Computer_Start_Click(object sender, RoutedEventArgs e)
-        {
-            ComputerStart.Background = new SolidColorBrush(Color.FromRgb(0,255, 0));
-            HumanStart.Background = new SolidColorBrush(Color.FromRgb(112, 128, 144));
-            start = false;
-        }
-
-        private void Human_Start_Click(object sender, RoutedEventArgs e)
-        {
-            HumanStart.Background = new SolidColorBrush(Color.FromRgb(0,255, 0));
-            ComputerStart.Background = new SolidColorBrush(Color.FromRgb(112, 128, 144));
-            start = true;
-        }
-
         private void Computer_Click(object sender, RoutedEventArgs e)
         {
-            HumanStart.Visibility = Visibility.Visible;
-            ComputerStart.Visibility = Visibility.Visible;
-            startBG.Visibility = Visibility.Visible;
-            computerBG.Background = new SolidColorBrush(Color.FromRgb(0,255, 0));
-            humanBG.Background = new SolidColorBrush(Color.FromRgb(112, 128, 144));
-            human = false;
+            computerBoarder.Visibility = Visibility.Visible;
+            humanBoarder.Visibility = Visibility.Hidden;
+            start = false;
         }
 
         private void Human_Click(object sender, RoutedEventArgs e)
         {
-            HumanStart.Visibility = Visibility.Hidden;
-            ComputerStart.Visibility = Visibility.Hidden;
-            startBG.Visibility = Visibility.Hidden;
-            humanBG.Background = new SolidColorBrush(Color.FromRgb(0,255, 0));
-            computerBG.Background = new SolidColorBrush(Color.FromRgb(112, 128, 144));
-            human = true;
+            humanBoarder.Visibility = Visibility.Visible;
+            computerBoarder.Visibility = Visibility.Hidden;
+            start = true;
         }
 
         private void Next_Click(object sender, RoutedEventArgs e)
         {
-            new MainWindow(start,human).Show();
+            
+        }
+
+
+        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            DragMove();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (start)
+            {
+                new MainWindow(start, true).Show();
+                this.Close();
+            }
+            else
+            {
+                new Second().Show();
+                this.Close();
+            }
+        }
+
+
+        private void button1_Click(object sender, RoutedEventArgs e)
+        {
             this.Close();
         }
     }

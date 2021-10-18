@@ -90,6 +90,11 @@ namespace CHESS
                     {
                         buttonsBackground.Background = new SolidColorBrush(Color.FromRgb(255, 0, 0));
                     }
+                    
+                    if(spot!= null && spot.getX() == j && spot.getY() == i)
+                    {
+                        buttonsBackground.Background = new SolidColorBrush(Color.FromRgb(164, 247, 255));
+                    }
 
                     Move lastMove;
                     if (game.movesPlayed.Count != 0)
@@ -103,8 +108,6 @@ namespace CHESS
             }
 
 
-            updateTrash(game.whiteKilledPieces, whiteScoring,garbage_can2);
-            updateTrash(game.blackKilledPieces, blackScoring,garbage_can);
 
             if (game.board.getKingThreatned())
             {
@@ -596,5 +599,11 @@ namespace CHESS
             click(7, 7);
         }
         #endregion
+
+        private void home_Click(object sender, RoutedEventArgs e)
+        {
+            new Start().Show();
+            this.Close();
+        }
     }
 }

@@ -45,3 +45,5 @@ C:\develop\Chess\CHESS\obj\Debug\Start.g.cs
 C:\develop\Chess\CHESS\obj\Debug\MainWindow.baml
 C:\develop\Chess\CHESS\obj\Debug\Start.baml
 C:\develop\Chess\CHESS\obj\Debug\CHESS.csproj.AssemblyReference.cache
+C:\develop\Chess\CHESS\obj\Debug\Second.g.cs
+C:\develop\Chess\CHESS\obj\Debug\Second.baml

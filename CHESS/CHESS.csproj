@@ -63,13 +63,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Pieces\Bishop.cs" />
-    <Compile Include="Pieces\King.cs" />
-    <Compile Include="Pieces\Knight.cs" />
-    <Compile Include="Pieces\Pawn.cs" />
-    <Compile Include="Pieces\Queen.cs" />
-    <Compile Include="Pieces\Rook.cs" />
+    <Compile Include="Game\Pieces\Bishop.cs" />
+    <Compile Include="Game\Pieces\King.cs" />
+    <Compile Include="Game\Pieces\Knight.cs" />
+    <Compile Include="Game\Pieces\Pawn.cs" />
+    <Compile Include="Game\Pieces\Queen.cs" />
+    <Compile Include="Game\Pieces\Rook.cs" />
     <Compile Include="Game\Spot.cs" />
+    <Compile Include="Second.xaml.cs">
+      <DependentUpon>Second.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Start.xaml.cs">
       <DependentUpon>Start.xaml</DependentUpon>
     </Compile>
@@ -87,6 +90,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Second.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Start.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -94,7 +101,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Game\Move.cs" />
-    <Compile Include="Pieces\_Piece.cs" />
+    <Compile Include="Game\Pieces\_Piece.cs" />
     <Compile Include="Game\Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -172,6 +179,21 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="images\back.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\next.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\home.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\grass.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\desert.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\lightBlue.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.4.1.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.1.0\build\MaterialDesignThemes.targets')" />

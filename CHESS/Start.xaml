@@ -5,81 +5,73 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CHESS"
         mc:Ignorable="d"
-        Title="Start" Height="600" Width="600"
-                WindowStartupLocation="CenterScreen"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+         WindowStartupLocation="CenterScreen"
+        Title="Start" Height="500" Width="500"
+                 WindowStyle="None" AllowsTransparency="True" Background="Transparent"
+        
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="13"
         TextOptions.TextFormattingMode="Ideal"
         TextOptions.TextRenderingMode="Auto"
-        Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
-        WindowStyle="ToolWindow">
+ MouseLeftButtonDown="Window_MouseLeftButtonDown">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
+        <Ellipse Height="500" Name="ellipse1" Stroke="Black" Width="500">
+            <Ellipse.Fill>
+                <ImageBrush ImageSource="images/lightBlue.png" />
+
+            </Ellipse.Fill>
+
+        </Ellipse>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
 
-        <Label Content="CHESS: " HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.ColumnSpan="4"  FontSize="60" Foreground="#FF1A2C77" FontFamily="Arial Black"/>
-
-
-        <TextBlock x:Name="startBG" Text="START?" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="50" Foreground="#FF1A2277" FontFamily="Arial Black" Visibility="Hidden"/>
-
-        <TextBlock Text="VS?" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="50" Foreground="#FF1A2277" FontFamily="Arial Black"/>
-
-        <Grid x:Name="ComputerStart" Grid.Row="2" Grid.Column="0" Background="#708090"   Opacity="0.5" Width="70" Height="70" Visibility="Hidden">
-            <Button x:Name="computerS" Width="60" Height="60" Click="Computer_Start_Click">
+            <Button x:Name="computer"  Click="Computer_Click" Height="70" Width="70" BorderThickness="0" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Margin="15,15,15,15" >
                 <Button.Background>
-                    <ImageBrush ImageSource="images/computer.png" Opacity="0.7"/>
+                    <ImageBrush ImageSource="images/computer.png"/>
                 </Button.Background>
             </Button>
-        </Grid>
+            <Border x:Name="computerBoarder" BorderBrush="Navy" CornerRadius="100" BorderThickness="4" Grid.Column="0" Grid.ColumnSpan="2" Width="100" Height="100" Grid.Row="1"  Visibility="Hidden"/>
 
-        <Grid x:Name="HumanStart" Grid.Row="2" Grid.Column="1" Background="#708090"   Opacity="0.5" Width="70" Height="70" Visibility="Hidden">
-            <Button x:Name="humanS" Width="60" Height="60" Click="Human_Start_Click">
+
+            <Button x:Name="human" Click="Human_Click" Height="70" Width="70" BorderThickness="0" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="1" Margin="15,15,15,15">
                 <Button.Background>
-                    <ImageBrush ImageSource="images/person.png" Opacity="0.7"/>
+                    <ImageBrush ImageSource="images/person.png" />
                 </Button.Background>
             </Button>
-        </Grid>
+
+            <Border x:Name="humanBoarder" BorderBrush="Navy"  CornerRadius="100" BorderThickness="4" Grid.Column="2" Grid.ColumnSpan="2" Width="100" Height="100" Grid.Row="1"  Visibility="Hidden"/>
+
+            <Button Content="Close" Click="button1_Click"  HorizontalAlignment="Center"  Name="button1" VerticalAlignment="Center" Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="0"/>
 
 
-        <Grid x:Name="computerBG" Grid.Row="2" Grid.Column="2" Background="#708090"   Opacity="0.5" Width="70" Height="70">
-            <Button x:Name="computerB" Width="60" Height="60" Click="Computer_Click">
+
+            <Button Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" Width="50" Height="50" BorderThickness="0" Click="Button_Click">
                 <Button.Background>
-                    <ImageBrush ImageSource="images/computer.png" Opacity="0.7"/>
+                    <ImageBrush ImageSource="images/next.png" Opacity="0.7"/>
                 </Button.Background>
             </Button>
-            
+
+
+
         </Grid>
 
-        <Grid x:Name="humanBG" Grid.Row="2" Grid.Column="3" Background="#708090"   Opacity="0.5" Width="70" Height="70">
-            <Button x:Name="humanB" Width="60" Height="60" Click="Human_Click">
-                <Button.Background>
-                    <ImageBrush ImageSource="images/person.png" Opacity="0.7"/>
-                </Button.Background>
-            </Button>
-        </Grid>
 
-        <Button Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="3" Background="Gray" Click="Next_Click">
-            NEXT
-        </Button>
 
-        <Grid.Background>
-            <ImageBrush ImageSource="images/wood.png" Opacity="0.3"/>
-        </Grid.Background>
+
 
     </Grid>
 </Window>
