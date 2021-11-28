@@ -107,7 +107,8 @@ namespace CHESS
                 }
             }
 
-
+            updateTrash(game.whiteKilledPieces, whiteScoring, garbage_can2);
+            updateTrash(game.blackKilledPieces, blackScoring, garbage_can);
 
             if (game.board.getKingThreatned())
             {

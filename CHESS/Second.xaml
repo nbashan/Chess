@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:CHESS"
         mc:Ignorable="d"
          WindowStartupLocation="CenterScreen"
-        Title="Start" Height="500" Width="500"
+        Title="Start" Height="700" Width="800"
                  WindowStyle="None" AllowsTransparency="True" Background="Transparent"
         
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -17,7 +17,7 @@
         FontFamily="{DynamicResource MaterialDesignFont}"
  MouseLeftButtonDown="Window_MouseLeftButtonDown">
     <Grid>
-        <Ellipse Height="500" Name="ellipse1" Stroke="Black" Width="500">
+        <Ellipse Height="700" Name="ellipse1" Stroke="Black" Width="800">
             <Ellipse.Fill>
                 <ImageBrush ImageSource="images/lightBlue.png" />
 
@@ -56,6 +56,11 @@
             <Border x:Name="humanBoarder2" BorderBrush="Navy"  CornerRadius="100" BorderThickness="4" Grid.Column="2" Grid.ColumnSpan="2" Width="100" Height="100" Grid.Row="1"  Visibility="Hidden"/>
 
             <Button Content="Close" Click="button1_Click"  HorizontalAlignment="Center"  Name="button1" VerticalAlignment="Center" Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="0"/>
+            <TextBlock Text="START" HorizontalAlignment="Center" VerticalAlignment="Bottom" Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="0" FontSize="40" FontWeight="Bold" TextDecorations="{x:Null}">
+                <TextBlock.Effect>
+                    <DropShadowEffect/>
+                </TextBlock.Effect>
+            </TextBlock>
 
 
 

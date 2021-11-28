@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\develop\Chess\CHESS\App.xaml
-3-1473951037
+5-1283552930
 
-19-959576927
+24-227967432
 15-870160369
-MainWindow.xaml;Second.xaml;Start.xaml;
+MainWindow.xaml;Second.xaml;Start.xaml;View\ChessGrid.xaml;View\ChessSquareVC.xaml;
 
 False
 

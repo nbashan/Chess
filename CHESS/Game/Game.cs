@@ -29,6 +29,15 @@ namespace CHESS
         public List<Piece> blackKilledPieces;
         #endregion
 
+        public Game(Player p1, Player p2)
+        {
+            initialize(p1, p2);
+        }
+
+        public Game()
+        {
+        }
+
         #region getters & setters
         public GameStatus getStatus()
         {

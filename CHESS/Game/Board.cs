@@ -9,7 +9,7 @@ namespace CHESS
     public class Board
     {
         #region attributes
-        private Spot[,] boxes;
+        public Spot[,] boxes;
         private bool finished = false;
         private Move move;
         private bool kingThreatned = false;
